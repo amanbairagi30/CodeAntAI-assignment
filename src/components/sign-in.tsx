@@ -2,8 +2,10 @@ import { azure, bitbucket, github, gitlab, key } from "@/images";
 import Logo from "./ui/svgs/logo";
 import { Tab, TabContent, Tabs, TabsList } from "./ui/tabs";
 import { SignInButton } from "./ui/sign-in-button";
+import { useNavigate } from "react-router";
 
 export default function SignIn() {
+  const navigate = useNavigate();
   const providers = [
     { name: "GitHub", icon: github },
     { name: "BitBucket", icon: bitbucket },
@@ -14,9 +16,8 @@ export default function SignIn() {
     { name: "Self Hosted GitLab", icon: gitlab },
     { name: "Sign in with SSO", icon: key },
   ];
-  const handleSignIn = (provider: string) => {
-    console.log(`Signing in with ${provider}`);
-    // Implement your sign-in logic here
+  const handleSignIn = () => {
+    navigate("/dashboard/repositories");
   };
   return (
     <>
@@ -46,7 +47,7 @@ export default function SignIn() {
                     key={provider.name}
                     provider={provider.name}
                     icon={provider.icon}
-                    onClick={() => handleSignIn(provider.name)}
+                    onClick={() => handleSignIn()}
                   />
                 ))}
               </div>
@@ -55,7 +56,7 @@ export default function SignIn() {
               <div className="p-6 w-full h-full flex-1 flex gap-4 flex-col border-t items-center">
                 {selfhostedProviders.map(({ icon, name }) => (
                   <button
-                    onClick={() => handleSignIn(name)}
+                    onClick={() => handleSignIn()}
                     className="flex hover:bg-accent items-center py-4 justify-center gap-4 w-full max-w-[446px] shadow-sm border border-[#D8DAE5] rounded-lg transition-colors duration-200"
                   >
                     <img src={icon} alt={`${icon} `} width={24} height={24} />

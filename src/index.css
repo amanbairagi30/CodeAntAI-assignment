@@ -27,6 +27,14 @@ h1 {
   line-height: 1.1;
 }
 
+.no-scrollbar {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
